@@ -1,0 +1,7 @@
+1.limit和offset用法
+SELECT * FROM 表名 LIMIT 3,1;          #从第4条数据开始取数，取1条数据，即只取第四条
+SELECT * FROM 表名 LIMIT 1 OFFSET 3;   #从第4条数据开始取数，取1条数据，即只取第四条
+理解：limit就是取n条，offset就是从第n+1条开始取数
+
+2. select distinct
+仅选取唯一不同的值
