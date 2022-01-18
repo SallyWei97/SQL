@@ -7,3 +7,12 @@ where hire_date = (
 select distinct hire_date from employees 
 order by hire_date desc 
 limit 2,1)
+
+3.查找当前薪水详情以及部门编号dept_no
+select salaries.emp_no, salaries.salary, salaries.from_date, salaries.to_date, dept_manager.dept_no 
+from dept_manager join salaries where dept_manager.emp_no = salaries.emp_no 
+order by salaries.emp_no
+
+4.查找所有已经分配部门的员工的last_name和first_name以及dept_no
+select em.last_name, em.first_name, de.dept_no from dept_emp de left join employees em 
+where em.emp_no = de.emp_no
