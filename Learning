@@ -5,3 +5,9 @@ SELECT * FROM 表名 LIMIT 1 OFFSET 3;   #从第4条数据开始取数，取1条
 
 2. select distinct
 仅选取唯一不同的值
+
+3.having
+group by后边不能使用where,只能用having
+
+4.% &
+x%2 表示x除以2的余数。
