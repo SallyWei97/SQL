@@ -86,3 +86,23 @@ select s1.salary from salaries s1 join salaries s2
     having count(distinct s2.salary) = 2
 ) and s.to_date='9999-01-01'
 
+19.查找所有员工的last_name和first_name以及对应的dept_name，也包括暂时没有分配部门的员工
+select e.last_name, e.first_name, ds.dept_name from employees e left join 
+(select * from dept_emp de join departments d on de.dept_no=d.dept_no) as ds
+on e.emp_no=ds.emp_no 
+
+21.查找在职员工自入职以来的薪水涨幅情况，给出在职员工编号emp_no以及其对应的薪水涨幅growth，并按照growth进行升序
+select s1.emp_no, (s1.salary-s2.salary) as growth
+from (select * from salaries where to_date='9999-01-01') as s1
+inner join
+(select * from salaries as s left join employees e 
+on s.emp_no=e.emp_no
+where s.from_date=e.hire_date) as s2
+on s1.emp_no=s2.emp_no
+order by growth
+
+22.统计各个部门的工资记录数
+select de.dept_no, d.dept_name, count(s.salary) as sum
+from salaries s join dept_emp de on s.emp_no=de.emp_no
+join departments d on de.dept_no=d.dept_no
+group by d.dept_no
