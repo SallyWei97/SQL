@@ -9,5 +9,8 @@ SELECT * FROM 表名 LIMIT 1 OFFSET 3;   #从第4条数据开始取数，取1条
 3.having
 group by后边不能使用where,只能用having
 
-4.% &
+4.%
 x%2 表示x除以2的余数。
+
+5.自连接+分组去重统计排序（无法使用order by时）
+如果需要对表A的列a排序：A A1 join A A2 on A1.a<=A2.a group by A1.a having count(distinct A2.a)=? 
